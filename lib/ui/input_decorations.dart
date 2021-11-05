@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class InputDecorations {
   static InputDecoration authInputDecoration(
-      {String hintText, String labelText, IconData prefixIcon}) {
+      {required String hintText,
+      required String labelText,
+      IconData? prefixIcon}) {
     return InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.deepPurple),
@@ -14,7 +16,7 @@ class InputDecorations {
         labelStyle: TextStyle(color: Colors.grey),
         prefixIcon: prefixIcon != null
             ? Icon(
-                Icons.alternate_email_sharp,
+                prefixIcon,
                 color: Colors.deepPurple,
               )
             : null);
