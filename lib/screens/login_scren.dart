@@ -23,12 +23,49 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                Text('Formulario')
+                _LoginForm()
               ],
             ),
-          )
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Text('Crear una nueva cuenta')
         ],
       ),
     )));
+  }
+}
+
+class _LoginForm extends StatelessWidget {
+  const _LoginForm({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //TODO mantener la referencia al Key
+      child: Form(
+          child: Column(
+        children: [
+          TextFormField(
+            autocorrect: false,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.deepPurple),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+                hintText: 'example@gmail.com',
+                labelText: 'Correo',
+                labelStyle: TextStyle(color: Colors.grey),
+                prefixIcon: Icon(
+                  Icons.alternate_email_sharp,
+                  color: Colors.deepPurple,
+                )),
+          )
+        ],
+      )),
+    );
   }
 }
