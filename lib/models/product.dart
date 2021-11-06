@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-class Produc {
-  Produc({
+class Product {
+  Product({
     required this.available,
     required this.name,
     this.picture,
@@ -16,12 +16,13 @@ class Produc {
   String name;
   String? picture;
   double price;
+  String? id;
 
-  factory Produc.fromJson(String str) => Produc.fromMap(json.decode(str));
+  factory Product.fromJson(String str) => Product.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Produc.fromMap(Map<String, dynamic> json) => Produc(
+  factory Product.fromMap(Map<String, dynamic> json) => Product(
         available: json["available"],
         name: json["name"],
         picture: json["picture"],
