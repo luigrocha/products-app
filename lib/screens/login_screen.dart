@@ -75,7 +75,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'example@gmail.com',
                     labelText: 'Correo',
                     prefixIcon: Icons.alternate_email_rounded),
-                onChanged: (value) => loginForm.email,
+                onChanged: (value) => loginForm.email = value,
                 validator: (value) {
                   String pattern =
                       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -95,7 +95,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: '*******',
                     labelText: 'Contraseña',
                     prefixIcon: Icons.lock_outline),
-                onChanged: (value) => loginForm.pass,
+                onChanged: (value) => loginForm.pass = value,
                 validator: (value) {
                   return (value != null && value.length >= 6)
                       ? null

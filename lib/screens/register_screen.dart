@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/providers/login_form_provider.dart';
+import 'package:login/services/services.dart';
 import 'package:login/ui/input_decorations.dart';
 import 'package:login/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -12,17 +13,13 @@ class RegisterScreen extends StatelessWidget {
             child: SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 250,
-          ),
+          SizedBox(height: 250),
           CardContainer(
             child: Column(
               children: [
                 SizedBox(height: 10),
-                Text(
-                  'Crear Cuenta',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
+                Text('Crear Cuenta',
+                    style: Theme.of(context).textTheme.headline4),
                 SizedBox(
                   height: 30,
                 ),
@@ -37,8 +34,7 @@ class RegisterScreen extends StatelessWidget {
             height: 50,
           ),
           TextButton(
-            onPressed: () =>
-                Navigator.pushReplacementNamed(context, 'register'),
+            onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
             style: ButtonStyle(
                 overlayColor:
                     MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
@@ -75,7 +71,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: 'example@gmail.com',
                     labelText: 'Correo',
                     prefixIcon: Icons.alternate_email_rounded),
-                onChanged: (value) => loginForm.email,
+                onChanged: (value) => loginForm.email = value,
                 validator: (value) {
                   String pattern =
                       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -95,7 +91,7 @@ class _LoginForm extends StatelessWidget {
                     hintText: '*******',
                     labelText: 'Contraseña',
                     prefixIcon: Icons.lock_outline),
-                onChanged: (value) => loginForm.pass,
+                onChanged: (value) => loginForm.pass = value,
                 validator: (value) {
                   return (value != null && value.length >= 6)
                       ? null
@@ -110,11 +106,21 @@ class _LoginForm extends StatelessWidget {
                     ? null
                     : () async {
                         FocusScope.of(context).unfocus();
+                        final authService =
+                            Provider.of<AuthService>(context, listen: false);
                         if (!loginForm.isvalid()) return;
                         loginForm.isLoading = true;
-                        await Future.delayed(Duration(seconds: 2));
+
+                        final String? errorMessage = await authService
+                            .createUser(loginForm.email, loginForm.pass);
+
+                        if (errorMessage == null) {
+                          Navigator.pushReplacementNamed(context, 'home');
+                        } else {
+                          //TODO message
+                          print(errorMessage);
+                        }
                         loginForm.isLoading = false;
-                        Navigator.pushReplacementNamed(context, 'home');
                       },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -123,7 +129,7 @@ class _LoginForm extends StatelessWidget {
                 color: Colors.deepPurple,
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                    child: Text(loginForm.isLoading ? 'Espere...' : 'Ingresar',
+                    child: Text(loginForm.isLoading ? 'Espere...' : 'Registrar',
                         style: TextStyle(color: Colors.white))),
               )
             ],
