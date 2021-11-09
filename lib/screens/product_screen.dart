@@ -5,6 +5,7 @@ import 'package:login/services/products_service.dart';
 import 'package:login/ui/input_decorations.dart';
 import 'package:login/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProductScreen extends StatelessWidget {
   @override
@@ -52,14 +53,44 @@ class _ProductScreenBody extends StatelessWidget {
                     top: 60,
                     right: 20,
                     child: IconButton(
-                        onPressed: () {
-                          //todo camera\\
+                        onPressed: () async {
+                          final picker = new ImagePicker();
+                          final PickedFile? pickedFile = await picker.getImage(
+                              source: ImageSource.camera, imageQuality: 100);
+                          if (pickedFile == null) {
+                            print('no hay img');
+                            return;
+                          }
+                          print('tenemos img ${pickedFile.path}');
+                          productsService
+                              .updateSelectedProductImage(pickedFile.path);
                         },
                         icon: Icon(
                           Icons.camera_alt_outlined,
                           size: 40,
                           color: Colors.white,
-                        )))
+                        ))),
+                Positioned(
+                    top: 100,
+                    right: 20,
+                    child: IconButton(
+                        onPressed: () async {
+                          final picker = new ImagePicker();
+                          final PickedFile? pickedFile = await picker.getImage(
+                              source: ImageSource.gallery, imageQuality: 100);
+                          if (pickedFile == null) {
+                            print('no hay img');
+                            return;
+                          }
+                          print('tenemos img ${pickedFile.path}');
+                          productsService
+                              .updateSelectedProductImage(pickedFile.path);
+                        },
+                        icon: Icon(
+                          Icons.image_outlined,
+                          size: 40,
+                          color: Colors.white,
+                        ))),
               ],
             ),
             _ProductForm(),
@@ -69,13 +100,21 @@ class _ProductScreenBody extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.save_alt_outlined),
-        onPressed: () {
-          //TODO  guardar producto
-          if (!productForm.isValidForm()) return;
+        child: productsService.isSaving
+            ? CircularProgressIndicator(
+                color: Colors.white,
+              )
+            : Icon(Icons.save_alt_outlined),
+        onPressed: productsService.isSaving
+            ? null
+            : () async {
+                if (!productForm.isValidForm()) return;
 
-          productsService.saveorCreateProduct(productForm.product);
-        },
+                final String? imageUrl = await productsService.uploadImage();
+                if (imageUrl != null) productForm.product.picture = imageUrl;
+
+                await productsService.saveorCreateProduct(productForm.product);
+              },
       ),
     );
   }
@@ -94,7 +133,7 @@ class _ProductForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         width: double.infinity,
-        height: 300,
+        height: 400,
         decoration: _buildBoxDecoration(),
         child: Form(
             key: productForm.formKey,

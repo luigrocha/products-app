@@ -119,7 +119,7 @@ class _ProductDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 50),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         width: double.infinity,
         height: 70,
         decoration: _buildBoxDecoration(),
