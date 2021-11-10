@@ -8,11 +8,11 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
-        margin: EdgeInsets.only(top: 10, bottom: 20),
+        margin: EdgeInsets.only(top: 5, bottom: 5),
         width: double.infinity,
-        height: 400,
+        height: 300,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -43,7 +43,7 @@ class ProductCard extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
           boxShadow: [
-            BoxShadow(color: Colors.black, offset: Offset(0, 7), blurRadius: 10)
+            BoxShadow(color: Colors.black, offset: Offset(0, 2), blurRadius: 5)
           ]);
 }
 
@@ -98,7 +98,7 @@ class _PriceTag extends StatelessWidget {
       width: 100,
       height: 70,
       decoration: BoxDecoration(
-          color: Colors.indigo,
+          color: Colors.black54,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(25), bottomLeft: Radius.circular(25))),
     );
@@ -119,7 +119,7 @@ class _ProductDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 50),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         width: double.infinity,
         height: 70,
         decoration: _buildBoxDecoration(),
@@ -151,7 +151,7 @@ class _ProductDetails extends StatelessWidget {
   }
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
-      color: Colors.indigo,
+      color: Colors.black54,
       borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25), topRight: Radius.circular(25)));
 }
@@ -169,8 +169,7 @@ class _BackgroundImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(25),
       child: Container(
         width: double.infinity,
-        height: 400,
-        //TODO fix product cuando no hay img
+        height: 300,
         child: url == null
             ? Image(image: AssetImage('assets/no-image.png'))
             : FadeInImage(

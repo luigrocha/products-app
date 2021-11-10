@@ -126,7 +126,7 @@ class _LoginForm extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 disabledColor: Colors.grey,
                 elevation: 0,
-                color: Colors.deepPurple,
+                color: Colors.cyan[800],
                 child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                     child: Text(loginForm.isLoading ? 'Espere...' : 'Registrar',

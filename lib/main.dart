@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: Colors.grey[300],
-          appBarTheme: AppBarTheme(elevation: 0, color: Colors.indigo),
+          appBarTheme: AppBarTheme(elevation: 0, color: Colors.cyan[700]),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.indigo, elevation: 0)),
+              backgroundColor: Colors.cyan[800], elevation: 0)),
     );
   }
 }

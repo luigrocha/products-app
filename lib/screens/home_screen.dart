@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     final authService = Provider.of<AuthService>(context, listen: false);
     if (productsService.isLoading) return LoadingScreen();
     return Scaffold(
-      appBar: AppBar(title: Text('Productos'), actions: [
+      appBar: AppBar(title: Text('CR-Store'), actions: [
         IconButton(
           icon: Icon(Icons.logout_outlined),
           onPressed: () async {

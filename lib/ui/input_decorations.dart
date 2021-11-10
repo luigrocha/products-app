@@ -7,17 +7,17 @@ class InputDecorations {
       IconData? prefixIcon}) {
     return InputDecoration(
         enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.deepPurple),
+          borderSide: BorderSide(color: Colors.cyan),
         ),
         focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.deepPurple, width: 2)),
+            borderSide: BorderSide(color: Colors.cyan, width: 2)),
         hintText: hintText,
         labelText: labelText,
         labelStyle: TextStyle(color: Colors.grey),
         prefixIcon: prefixIcon != null
             ? Icon(
                 prefixIcon,
-                color: Colors.deepPurple,
+                color: Colors.cyan[800],
               )
             : null);
   }

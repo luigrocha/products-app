@@ -35,7 +35,7 @@ class _HeaderIcon extends StatelessWidget {
         //height: 200,
         //color: Colors.red,
         child: Icon(
-          Icons.person_pin,
+          Icons.food_bank_rounded,
           color: Colors.white,
           size: 100,
         ),
@@ -86,8 +86,8 @@ class _PurpleBox extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
           gradient: LinearGradient(colors: [
-        Color.fromRGBO(63, 63, 156, 1),
-        Color.fromRGBO(90, 70, 178, 1),
+        Color.fromRGBO(0, 206, 209, 1),
+        Color.fromRGBO(0, 139, 139, 1),
       ]));
 }
 
