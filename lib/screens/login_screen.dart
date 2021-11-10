@@ -122,7 +122,6 @@ class _LoginForm extends StatelessWidget {
                         if (errorMessage == null) {
                           Navigator.pushReplacementNamed(context, 'home');
                         } else {
-                          //TODO message
                           print(errorMessage);
                           NotificationsService.showSnakbar(errorMessage);
                         }

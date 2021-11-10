@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Productos APP',
+      title: 'CR-Store',
       initialRoute: 'login',
       routes: {
         'login': (_) => LoginScreen(),
