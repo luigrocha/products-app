@@ -46,8 +46,6 @@ class AuthService extends ChangeNotifier {
     final resp = await http.post(url, body: json.encode(authData));
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
 
-    print(decodeResp);
-
     if (decodeResp.containsKey('idToken')) {
       await storage.write(key: 'token', value: decodeResp['idToken']);
 

@@ -61,7 +61,6 @@ class _ProductScreenBody extends StatelessWidget {
                             print('no hay img');
                             return;
                           }
-                          print('tenemos img ${pickedFile.path}');
                           productsService
                               .updateSelectedProductImage(pickedFile.path);
                         },
@@ -79,10 +78,8 @@ class _ProductScreenBody extends StatelessWidget {
                           final PickedFile? pickedFile = await picker.getImage(
                               source: ImageSource.gallery, imageQuality: 100);
                           if (pickedFile == null) {
-                            print('no hay img');
                             return;
                           }
-                          print('tenemos img ${pickedFile.path}');
                           productsService
                               .updateSelectedProductImage(pickedFile.path);
                         },
