@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:login/models/models.dart';
 import 'package:login/screens/screens.dart';
 import 'package:login/services/services.dart';
+import 'package:login/share_prefs/preferencias_usuario.dart';
 import 'package:login/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomeScreen extends StatelessWidget {
+  static final String routeName = 'home';
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = HomeScreen.routeName;
     final productsService = Provider.of<ProductsService>(context);
     final authService = Provider.of<AuthService>(context, listen: false);
     RefreshController _refreshController =
@@ -86,6 +90,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      drawer: MenuWidget(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {

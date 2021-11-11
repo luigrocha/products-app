@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:login/screens/screens.dart';
+import 'package:login/screens/settings_screen.dart';
 import 'package:login/services/services.dart';
+import 'package:login/share_prefs/preferencias_usuario.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(AppState());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = PreferenciasUsuario();
+  await prefs.initPrefs();
+  runApp(AppState());
+}
 
 class AppState extends StatelessWidget {
   @override
@@ -19,18 +26,21 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
+  final prefs = PreferenciasUsuario();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CR-Store',
-      initialRoute: 'login',
+      initialRoute: prefs.ultimaPagina,
       routes: {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
         'home': (_) => HomeScreen(),
         'product': (_) => ProductScreen(),
         'checking': (_) => CheckAuthScreen(),
+        'settings': (_) => SettingsScreen(),
       },
       scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
