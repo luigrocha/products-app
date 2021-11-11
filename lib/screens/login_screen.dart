@@ -91,7 +91,9 @@ class _LoginForm extends StatelessWidget {
               ),
               TextFormField(
                 autocorrect: false,
-                keyboardType: TextInputType.emailAddress,
+                obscureText: true,
+                enableSuggestions: false,
+                keyboardType: TextInputType.text,
                 decoration: InputDecorations.authInputDecoration(
                     hintText: '*******',
                     labelText: 'Contraseña',
@@ -129,7 +131,7 @@ class _LoginForm extends StatelessWidget {
                       },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                disabledColor: Colors.grey,
+                disabledColor: Colors.grey[400],
                 elevation: 0,
                 color: Colors.cyan[800],
                 child: Container(

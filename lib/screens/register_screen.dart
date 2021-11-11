@@ -86,6 +86,8 @@ class _LoginForm extends StatelessWidget {
               ),
               TextFormField(
                 autocorrect: false,
+                obscureText: true,
+                enableSuggestions: false,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecorations.authInputDecoration(
                     hintText: '*******',

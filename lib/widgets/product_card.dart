@@ -66,9 +66,9 @@ class _NotAvailable extends StatelessWidget {
         ),
       ),
       width: 100,
-      height: 70,
+      height: 40,
       decoration: BoxDecoration(
-          color: Colors.yellow[800],
+          color: Colors.red[800],
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
     );
@@ -98,7 +98,7 @@ class _PriceTag extends StatelessWidget {
       width: 100,
       height: 70,
       decoration: BoxDecoration(
-          color: Colors.black54,
+          color: Colors.cyan[900],
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(25), bottomLeft: Radius.circular(25))),
     );

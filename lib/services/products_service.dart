@@ -21,8 +21,9 @@ class ProductsService extends ChangeNotifier {
   ProductsService() {
     this.loadProducts();
   }
-//<List<Product>>
   Future<List<Product>> loadProducts() async {
+    isLoading = true;
+    notifyListeners();
     final url = Uri.https(_baseUrl, 'products.json',
         {'auth': await storage.read(key: 'token') ?? ''});
     final resp = await http.get(url);
@@ -43,7 +44,7 @@ class ProductsService extends ChangeNotifier {
     notifyListeners();
 
     if (product.id == null) {
-      this.createProduct(product);
+      await this.createProduct(product);
     } else {
       await this.updateProduct(product);
     }
