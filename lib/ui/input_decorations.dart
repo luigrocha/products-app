@@ -12,6 +12,7 @@ class InputDecorations {
         focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.cyan, width: 2)),
         hintText: hintText,
+        contentPadding: EdgeInsets.all(20.0),
         labelText: labelText,
         labelStyle: TextStyle(color: Colors.grey),
         prefixIcon: prefixIcon != null

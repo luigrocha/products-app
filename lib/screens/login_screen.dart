@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 250,
+            height: 200,
           ),
           CardContainer(
             child: Column(
@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 30,
           ),
           TextButton(
             onPressed: () =>
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 80,
           ),
         ],
       ),

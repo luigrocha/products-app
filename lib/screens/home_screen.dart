@@ -29,7 +29,6 @@ class HomeScreen extends StatelessWidget {
       // if failed,use loadFailed(),if no data return,use LoadNodata()
       //TODO
       //items.add((items.length + 1).toString());
-      //productsService.products;
       //if (mounted) setState(() {});
       _refreshController.loadComplete();
     }
@@ -54,7 +53,9 @@ class HomeScreen extends StatelessWidget {
             if (mode == LoadStatus.idle) {
               body = Text("pull up para cargar");
             } else if (mode == LoadStatus.loading) {
-              body = CupertinoActivityIndicator();
+              body = CircularProgressIndicator(
+                color: Colors.cyan,
+              );
             } else if (mode == LoadStatus.failed) {
               body = Text("Fallo la carga ! Reintentar!");
             } else if (mode == LoadStatus.canLoading) {

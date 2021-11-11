@@ -8,9 +8,9 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Container(
-        margin: EdgeInsets.only(top: 5, bottom: 5),
+        margin: EdgeInsets.only(top: 5, bottom: 2.5),
         width: double.infinity,
         height: 300,
         decoration: _cardBorders(),
@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
             ),
             _ProductDetails(
               title: product.name,
-              subTitle: product.id!,
+              subTitle: product.desc!,
             ),
             Positioned(
                 top: 0,
@@ -34,16 +34,15 @@ class ProductCard extends StatelessWidget {
               Positioned(top: 0, left: 0, child: _NotAvailable()),
           ],
         ),
-        //color: Colors.red,
       ),
     );
   }
 
   BoxDecoration _cardBorders() => BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
-            BoxShadow(color: Colors.black, offset: Offset(0, 2), blurRadius: 5)
+            BoxShadow(color: Colors.black, offset: Offset(0, 1), blurRadius: 2)
           ]);
 }
 
@@ -70,7 +69,9 @@ class _NotAvailable extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.red[800],
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25), bottomRight: Radius.circular(25))),
+              topLeft: Radius.circular(5),
+              bottomRight: Radius.circular(25),
+              topRight: Radius.circular(25))),
     );
   }
 }
@@ -95,12 +96,12 @@ class _PriceTag extends StatelessWidget {
           ),
         ),
       ),
-      width: 100,
-      height: 70,
+      width: 120,
+      height: 50,
       decoration: BoxDecoration(
           color: Colors.cyan[900],
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(25), bottomLeft: Radius.circular(25))),
+              topRight: Radius.circular(5), bottomLeft: Radius.circular(25))),
     );
   }
 }
@@ -153,7 +154,7 @@ class _ProductDetails extends StatelessWidget {
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
       color: Colors.black54,
       borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(25), topRight: Radius.circular(25)));
+          bottomLeft: Radius.circular(5), topRight: Radius.circular(25)));
 }
 
 class _BackgroundImage extends StatelessWidget {
@@ -166,7 +167,7 @@ class _BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(5),
       child: Container(
         width: double.infinity,
         height: 300,

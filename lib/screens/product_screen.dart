@@ -40,8 +40,8 @@ class _ProductScreenBody extends StatelessWidget {
                   url: productsService.selectedProduct.picture,
                 ),
                 Positioned(
-                    top: 60,
-                    left: 20,
+                    top: 50,
+                    left: 0,
                     child: IconButton(
                         onPressed: () => Navigator.of(context).pop(),
                         icon: Icon(
@@ -50,7 +50,7 @@ class _ProductScreenBody extends StatelessWidget {
                           color: Colors.white,
                         ))),
                 Positioned(
-                    top: 60,
+                    top: 50,
                     right: 20,
                     child: IconButton(
                         onPressed: () async {
@@ -70,7 +70,7 @@ class _ProductScreenBody extends StatelessWidget {
                           color: Colors.white,
                         ))),
                 Positioned(
-                    top: 100,
+                    top: 90,
                     right: 20,
                     child: IconButton(
                         onPressed: () async {
@@ -127,7 +127,7 @@ class _ProductForm extends StatelessWidget {
     final productForm = Provider.of<ProductFormProvider>(context);
     final product = productForm.product;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Container(
         width: double.infinity,
         height: 400,
@@ -148,7 +148,19 @@ class _ProductForm extends StatelessWidget {
                   decoration: InputDecorations.authInputDecoration(
                       hintText: 'Nombre del producto', labelText: 'Nombre:'),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 10),
+                TextFormField(
+                  initialValue: product.desc,
+                  onChanged: (value) => product.desc = value,
+                  validator: (value) {
+                    if (value == null || value.length < 1)
+                      return 'La descripción es obligatorio';
+                  },
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecorations.authInputDecoration(
+                      hintText: 'Descripción', labelText: 'Descripción:'),
+                ),
+                SizedBox(height: 10),
                 TextFormField(
                   initialValue: '${product.price}',
                   inputFormatters: [
@@ -164,13 +176,13 @@ class _ProductForm extends StatelessWidget {
                   },
                   validator: (value) {
                     if (value == null || value.length < 1)
-                      return 'El nombre es obligatorio';
+                      return 'El precio es obligatorio';
                   },
                   keyboardType: TextInputType.number,
                   decoration: InputDecorations.authInputDecoration(
                       hintText: '\$150', labelText: 'Precio:'),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 10),
                 SwitchListTile.adaptive(
                     title: Text('Disponible'),
                     activeColor: Colors.cyan,

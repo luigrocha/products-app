@@ -10,7 +10,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+        padding: EdgeInsets.only(left: 0, right: 0, top: 0),
         child: Container(
           decoration: _buildBoxDecoration(),
           width: double.infinity,
@@ -19,8 +19,7 @@ class ProductImage extends StatelessWidget {
             opacity: 0.8,
             child: ClipRRect(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(45),
-                    topRight: Radius.circular(45)),
+                    topLeft: Radius.circular(5), topRight: Radius.circular(5)),
                 child: getImage(url)),
           ),
         ));
@@ -29,7 +28,7 @@ class ProductImage extends StatelessWidget {
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(45), topRight: Radius.circular(45)),
+              topLeft: Radius.circular(5), topRight: Radius.circular(5)),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.05),
