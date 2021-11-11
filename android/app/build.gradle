@@ -47,8 +47,8 @@ android {
         applicationId "org.crsoft.flutter.crstore"
         minSdkVersion 18
         targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 2
+        versionName "1.0.1"
     }
 
     signingConfigs {
