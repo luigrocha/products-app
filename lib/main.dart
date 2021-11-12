@@ -3,6 +3,8 @@ import 'package:login/screens/screens.dart';
 import 'package:login/screens/settings_screen.dart';
 import 'package:login/services/services.dart';
 import 'package:login/share_prefs/preferencias_usuario.dart';
+import 'package:login/themes/dark.dart';
+import 'package:login/themes/ligth.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CR-Store',
-      initialRoute: prefs.ultimaPagina,
+      initialRoute: (prefs.ultimaPagina == 'null') ? 'login' : 'register',
       routes: {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
@@ -45,16 +47,7 @@ class MyApp extends StatelessWidget {
         'perfil': (_) => UsuarioScreen(),
       },
       scaffoldMessengerKey: NotificationsService.messengerKey,
-      theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: Colors.grey[300],
-          appBarTheme: AppBarTheme(
-            elevation: 0,
-            color: (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
-          ),
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor:
-                  (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
-              elevation: 0)),
+      theme: (prefs.colorSecundario) ? dark : light,
     );
   }
 }
