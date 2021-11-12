@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/models/models.dart';
 import 'package:login/screens/screens.dart';
@@ -15,7 +14,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     prefs.ultimaPagina = HomeScreen.routeName;
     final productsService = Provider.of<ProductsService>(context);
-    final authService = Provider.of<AuthService>(context, listen: false);
     RefreshController _refreshController =
         RefreshController(initialRefresh: false);
 
@@ -37,68 +35,65 @@ class HomeScreen extends StatelessWidget {
       _refreshController.loadComplete();
     }
 
-    return Scaffold(
-      appBar: AppBar(title: Text('CR-Store'), actions: [
-        IconButton(
-          icon: Icon(Icons.logout_outlined),
-          onPressed: () async {
-            await authService.logout();
-            Navigator.pushReplacementNamed(context, 'login');
-          },
-        ),
-      ]),
-      body: SmartRefresher(
-        enablePullDown: true,
-        enablePullUp: true,
-        header: WaterDropHeader(),
-        footer: CustomFooter(
-          builder: (BuildContext context, mode) {
-            Widget body;
-            if (mode == LoadStatus.idle) {
-              body = Text("pull up para cargar");
-            } else if (mode == LoadStatus.loading) {
-              body = CircularProgressIndicator(
-                color: Colors.cyan,
-              );
-            } else if (mode == LoadStatus.failed) {
-              body = Text("Fallo la carga ! Reintentar!");
-            } else if (mode == LoadStatus.canLoading) {
-              body = Text("cargar más");
-            } else {
-              body = Text("No hay mas datos");
-            }
-            return Container(
-              height: 55.0,
-              child: Center(child: body),
-            );
-          },
-        ),
-        controller: _refreshController,
-        onRefresh: _onRefresh,
-        onLoading: _onLoading,
-        child: ListView.builder(
-          itemCount: productsService.products.length,
-          itemBuilder: (BuildContext context, int index) => GestureDetector(
-            child: ProductCard(
-              product: productsService.products[index],
+    return DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('CR-Store'),
+            backgroundColor:
+                (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
+            titleSpacing: 1,
+            actions: [
+              IconButton(
+                icon: Icon(Icons.logout_outlined),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.architecture),
+                onPressed: () {},
+              ),
+            ],
+            elevation: 0,
+            bottom: TabBar(
+              indicatorWeight: 5,
+              indicatorColor: Colors.cyan,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.home),
+                ),
+                Tab(
+                  icon: Icon(Icons.list),
+                ),
+                Tab(
+                  icon: Icon(Icons.select_all),
+                ),
+                Tab(
+                  icon: Icon(Icons.face),
+                ),
+              ],
             ),
-            onTap: () {
+            /*flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.blue, Colors.red])),
+        ),*/
+          ),
+          body: TabBarView(
+            children: [
+              InicioWidget(),
+              InicioWidget(),
+              InicioWidget(),
+              InicioWidget(),
+            ],
+          ),
+          drawer: MenuWidget(),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
               productsService.selectedProduct =
-                  productsService.products[index].copy();
+                  new Product(available: true, name: '', price: 0);
               Navigator.pushNamed(context, 'product');
             },
           ),
-        ),
-      ),
-      drawer: MenuWidget(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          productsService.selectedProduct =
-              new Product(available: true, name: '', price: 0);
-          Navigator.pushNamed(context, 'product');
-        },
-      ),
-    );
+        ));
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:login/services/services.dart';
+import 'package:provider/provider.dart';
 
 class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
     return Drawer(
       elevation: 0,
       child: ListView(
@@ -29,11 +32,13 @@ class MenuWidget extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.people_alt,
+              Icons.coffee,
               color: Colors.cyan,
             ),
-            title: Text('Party Mode'),
-            onTap: () {},
+            title: Text('Productos'),
+            onTap: () {
+              Navigator.pushNamed(context, 'listProduct');
+            },
           ),
           ListTile(
             leading: Icon(
@@ -45,6 +50,29 @@ class MenuWidget extends StatelessWidget {
               //Navigator.pop(context);
               Navigator.pushNamed(context, 'settings');
               //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.person,
+              color: Colors.cyan,
+            ),
+            title: Text('Perfil'),
+            onTap: () {
+              //Navigator.pop(context);
+              Navigator.pushNamed(context, 'perfil');
+              //Navigator.pushReplacementNamed(context, SettingsPage.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.logout,
+              color: Colors.cyan,
+            ),
+            title: Text('Salir'),
+            onTap: () async {
+              await authService.logout();
+              Navigator.pushReplacementNamed(context, 'login');
             },
           ),
         ],

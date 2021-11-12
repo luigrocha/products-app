@@ -37,7 +37,8 @@ class _SettingsScreen extends State<SettingsScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Ajustes'),
-          backgroundColor: (prefs.colorSecundario) ? Colors.teal : Colors.blue,
+          backgroundColor:
+              (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
         ),
         drawer: MenuWidget(),
         body: Center(
@@ -52,6 +53,7 @@ class _SettingsScreen extends State<SettingsScreen> {
             ),
             Divider(),
             SwitchListTile(
+                activeColor: Colors.cyan,
                 value: _colorSecundario,
                 title: Text('Color secundario'),
                 onChanged: (value) {

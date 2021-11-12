@@ -38,16 +38,23 @@ class MyApp extends StatelessWidget {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
         'home': (_) => HomeScreen(),
+        'listProduct': (_) => ListProductScreen(),
         'product': (_) => ProductScreen(),
         'checking': (_) => CheckAuthScreen(),
         'settings': (_) => SettingsScreen(),
+        'perfil': (_) => UsuarioScreen(),
       },
       scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
           scaffoldBackgroundColor: Colors.grey[300],
-          appBarTheme: AppBarTheme(elevation: 0, color: Colors.cyan[700]),
+          appBarTheme: AppBarTheme(
+            elevation: 0,
+            color: (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
+          ),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
-              backgroundColor: Colors.cyan[800], elevation: 0)),
+              backgroundColor:
+                  (prefs.colorSecundario) ? Colors.black87 : Colors.cyan[800],
+              elevation: 0)),
     );
   }
 }
