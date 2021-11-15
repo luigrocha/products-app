@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class InicioWidget extends StatelessWidget {
+class FavWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +12,7 @@ class InicioWidget extends StatelessWidget {
           children: <Widget>[
             Container(
               width: 160.0,
-              color: Colors.red,
+              color: Colors.purple,
             ),
             Container(
               width: 160.0,

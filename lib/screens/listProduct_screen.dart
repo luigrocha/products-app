@@ -90,7 +90,7 @@ class ListProductScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           productsService.selectedProduct =
-              new Product(available: true, name: '', price: 0);
+              new Product(available: true, name: '', price: 0, desc: '');
           Navigator.pushNamed(context, 'product');
         },
       ),

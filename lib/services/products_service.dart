@@ -6,11 +6,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:login/models/product.dart';
 import 'package:http/http.dart' as http;
+import 'package:login/services/auth_service.dart';
 
 class ProductsService extends ChangeNotifier {
   final String _baseUrl = 'flutter-course-313c8-default-rtdb.firebaseio.com';
   final List<Product> products = [];
   late Product selectedProduct;
+  late AuthService authService;
 
   final storage = new FlutterSecureStorage();
   File? newFile;
@@ -27,15 +29,19 @@ class ProductsService extends ChangeNotifier {
     final url = Uri.https(_baseUrl, 'products.json',
         {'auth': await storage.read(key: 'token') ?? ''});
     final resp = await http.get(url);
-
     final Map<String, dynamic> productsMap = json.decode(resp.body);
-    productsMap.forEach((key, value) {
-      final tempProduct = Product.fromMap(value);
-      tempProduct.id = key;
-      this.products.add(tempProduct);
-    });
-    isLoading = false;
-    notifyListeners();
+    if (productsMap.containsKey('error')) {
+      print('logout');
+      storage.delete(key: 'token');
+    } else {
+      productsMap.forEach((key, value) {
+        final tempProduct = Product.fromMap(value);
+        tempProduct.id = key;
+        this.products.add(tempProduct);
+      });
+      isLoading = false;
+      notifyListeners();
+    }
     return this.products;
   }
 

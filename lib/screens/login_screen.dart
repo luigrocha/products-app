@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:login/providers/login_form_provider.dart';
 import 'package:login/services/services.dart';
+import 'package:login/share_prefs/preferencias_usuario.dart';
 import 'package:login/ui/input_decorations.dart';
 import 'package:login/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
+  final prefs = new PreferenciasUsuario();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,11 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 10),
                 Text(
                   'Login',
-                  style: Theme.of(context).textTheme.headline4,
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: (prefs.colorSecundario)
+                          ? Colors.cyan[800]
+                          : Colors.black87),
                 ),
                 SizedBox(
                   height: 30,
@@ -46,7 +52,11 @@ class LoginScreen extends StatelessWidget {
                 shape: MaterialStateProperty.all(StadiumBorder())),
             child: Text(
               'Crear una nueva cuenta',
-              style: TextStyle(fontSize: 18, color: Colors.black87),
+              style: TextStyle(
+                  fontSize: 18,
+                  color: (prefs.colorSecundario)
+                      ? Colors.cyan[800]
+                      : Colors.black87),
             ),
           ),
           SizedBox(

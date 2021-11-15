@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login/share_prefs/preferencias_usuario.dart';
+
+final prefs = new PreferenciasUsuario();
 
 class CardContainer extends StatelessWidget {
   const CardContainer({Key? key, required this.child}) : super(key: key);
@@ -17,7 +20,7 @@ class CardContainer extends StatelessWidget {
   }
 
   BoxDecoration _createCardShape() => BoxDecoration(
-          color: Colors.white,
+          color: (prefs.colorSecundario) ? Colors.black87 : Colors.white,
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(

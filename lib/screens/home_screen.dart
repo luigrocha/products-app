@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
         RefreshController(initialRefresh: false);
 
     if (productsService.isLoading) return LoadingScreen();
+
     void _onRefresh() async {
       // monitor network fetch
       await Future.delayed(Duration(milliseconds: 1000));
@@ -80,7 +81,7 @@ class HomeScreen extends StatelessWidget {
           body: TabBarView(
             children: [
               InicioWidget(),
-              InicioWidget(),
+              FavWidget(),
               InicioWidget(),
               InicioWidget(),
             ],
@@ -90,7 +91,7 @@ class HomeScreen extends StatelessWidget {
             child: Icon(Icons.add),
             onPressed: () {
               productsService.selectedProduct =
-                  new Product(available: true, name: '', price: 0);
+                  new Product(available: true, name: '', price: 0, desc: '');
               Navigator.pushNamed(context, 'product');
             },
           ),

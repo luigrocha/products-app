@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CR-Store',
-      initialRoute: (prefs.ultimaPagina == 'null') ? 'login' : 'register',
+      initialRoute: (prefs.ultimaPagina == 'null') ? 'login' : 'checking',
       routes: {
         'login': (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
