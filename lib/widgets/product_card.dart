@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:login/models/product.dart';
+import 'package:login/share_prefs/preferencias_usuario.dart';
 
 class ProductCard extends StatelessWidget {
+  final prefs = new PreferenciasUsuario();
   final Product product;
-  const ProductCard({Key? key, required this.product}) : super(key: key);
+  ProductCard({Key? key, prefs, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class ProductCard extends StatelessWidget {
   }
 
   BoxDecoration _cardBorders() => BoxDecoration(
-          color: Colors.white,
+          color: (prefs.colorSecundario) ? Colors.black87 : Colors.white,
           borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(color: Colors.black, offset: Offset(0, 1), blurRadius: 2)

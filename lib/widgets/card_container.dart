@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login/share_prefs/preferencias_usuario.dart';
 
-final prefs = new PreferenciasUsuario();
-
 class CardContainer extends StatelessWidget {
-  const CardContainer({Key? key, required this.child}) : super(key: key);
+  final prefs = new PreferenciasUsuario();
   final Widget child;
+
+  CardContainer({Key? key, required this.child}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
